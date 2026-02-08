@@ -47,7 +47,7 @@ export class HeroAnimation {
                 img.src = `${this.framePath}/${name}`;
                 img.onload = () => {
                     this.frameImages[index] = img;
-                    if (index === 5) this.bufferReady = true;
+                    if (index === 0) this.bufferReady = true;
                     resolve();
                 };
             });
