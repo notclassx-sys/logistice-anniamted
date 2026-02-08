@@ -536,15 +536,103 @@ header {
     }
 }
 
-/* Responsive */
+/* Full Responsive Overhaul */
 @media (max-width: 768px) {
+    header {
+        top: 16px;
+        padding: 10px 24px;
+        width: 90%;
+    }
 
-    .hero-grid,
+    .nav-links,
+    .nav-cta {
+        display: none;
+    }
+
+    .hamburger-btn {
+        display: flex;
+    }
+
+    .hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 60px;
+        text-align: center;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 2.2rem !important;
+        line-height: 1.2;
+        margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 32px;
+        padding: 0 10px;
+    }
+
+    .hero-btns {
+        width: 100%;
+    }
+
+    .hero-btns .btn {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .hero-right {
+        transform: translateY(0);
+        margin-top: 0;
+    }
+
+    .tracking-wrapper {
+        width: 100%;
+    }
+
+    .tracking-input-group {
+        flex-direction: column;
+        gap: 16px;
+        padding: 16px;
+    }
+
+    #track-btn {
+        width: 100%;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
     .form-row {
         grid-template-columns: 1fr;
     }
 
-    .nav-links {
-        display: none;
+    footer .nav-links {
+        flex-direction: column;
+        gap: 15px;
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem !important;
+    }
+
+    .mobile-menu-drawer {
+        width: 100%;
+        max-width: none;
     }
 }
