@@ -7,7 +7,42 @@ document.addEventListener('DOMContentLoaded', () => {
     initTracking();
     initQuoteCalculator();
     initScrollAnimations();
+    initMobileMenu();
 });
+
+function initMobileMenu() {
+    const hamburger = document.querySelector('.hamburger-btn');
+    const drawer = document.querySelector('.mobile-menu-drawer');
+    const closeBtn = document.querySelector('.close-drawer');
+    const drawerLinks = document.querySelectorAll('.mobile-nav-links a');
+
+    if (!hamburger || !drawer) return;
+
+    hamburger.addEventListener('click', () => {
+        drawer.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+
+    const closeMenu = () => {
+        drawer.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    };
+
+    closeBtn.addEventListener('click', closeMenu);
+
+    drawerLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+        if (drawer.classList.contains('active') &&
+            !drawer.contains(e.target) &&
+            !hamburger.contains(e.target)) {
+            closeMenu();
+        }
+    });
+}
 
 function initHeroAnimation() {
     new HeroAnimation('hero-canvas', '/hero-frames', HERO_FRAMES);
