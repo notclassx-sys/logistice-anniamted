@@ -566,13 +566,14 @@ header {
     }
 
     .hero {
-        padding-top: 100px;
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
+        padding-top: 80px;
+        height: 100vh;
+        height: 100dvh;
         padding-bottom: 60px;
         text-align: center;
         display: flex;
         align-items: center;
+        overflow: hidden;
     }
 
     .hero-grid {
