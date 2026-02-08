@@ -19,11 +19,13 @@ function initMobileMenu() {
     if (!hamburger || !drawer) return;
 
     hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
         drawer.classList.add('active');
         document.body.style.overflow = 'hidden'; // Prevent scrolling
     });
 
     const closeMenu = () => {
+        hamburger.classList.remove('active');
         drawer.classList.remove('active');
         document.body.style.overflow = ''; // Restore scrolling
     };

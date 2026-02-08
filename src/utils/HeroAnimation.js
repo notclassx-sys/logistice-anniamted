@@ -16,24 +16,38 @@ export class HeroAnimation {
         this.lastTime = 0;
         this.interval = 1000 / this.fps;
         this.isLoaded = false;
+        this.bufferReady = false;
 
+        // Load first frame immediately for instant visual
+        this.loadFirstFrame();
         this.init();
     }
 
+    async loadFirstFrame() {
+        const firstFrame = new Image();
+        firstFrame.src = `${this.framePath}/${this.frameNames[0]}`;
+        firstFrame.onload = () => {
+            this.frameImages[0] = firstFrame;
+            this.resize(); // Initial draw
+        };
+    }
+
     async init() {
-        await this.loadFrames();
         this.resize();
         window.addEventListener('resize', () => this.resize());
+        this.loadFrames(); // Start background loading
         requestAnimationFrame((time) => this.animate(time));
     }
 
     async loadFrames() {
         const loadPromises = this.frameNames.map((name, index) => {
+            if (index === 0) return Promise.resolve(); // Already loading
             return new Promise((resolve) => {
                 const img = new Image();
                 img.src = `${this.framePath}/${name}`;
                 img.onload = () => {
                     this.frameImages[index] = img;
+                    if (index === 5) this.bufferReady = true;
                     resolve();
                 };
             });
@@ -59,7 +73,7 @@ export class HeroAnimation {
     }
 
     animate(time) {
-        if (!this.isLoaded) {
+        if (!this.frameImages[0] && !this.bufferReady) {
             requestAnimationFrame((t) => this.animate(t));
             return;
         }

@@ -217,6 +217,18 @@ header {
     transition: var(--transition);
 }
 
+.hamburger-btn.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
 /* Mobile Menu Drawer */
 .mobile-menu-drawer {
     position: fixed;
